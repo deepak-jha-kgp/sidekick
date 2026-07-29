@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Run on Lemma" src="https://img.shields.io/badge/Run_on_Lemma-111111?style=for-the-badge"></a>
+  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Run on Lemma" src="./docs/run-on-lemma.svg" height="44"></a>
   <a href="https://github.com/deepak-jha-kgp/sidekick/fork"><img alt="Fork and make it yours" src="https://img.shields.io/badge/Fork_and_make_it_yours-F4F1EA?style=for-the-badge&amp;logo=github&amp;logoColor=111111"></a>
 </p>
 
@@ -42,7 +42,7 @@ The files in this repo contain the structure and instructions. Your private reco
 ## Run it on Lemma
 
 <p>
-  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Run on Lemma" src="https://img.shields.io/badge/Run_on_Lemma-111111?style=for-the-badge"></a>
+  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Run on Lemma" src="./docs/run-on-lemma.svg" height="44"></a>
 </p>
 
 The button opens Lemma's import flow for this exact GitHub repository:
