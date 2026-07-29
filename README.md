@@ -3,8 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Run on Lemma" src="./docs/run-on-lemma.svg" height="44"></a>
-  <a href="https://github.com/deepak-jha-kgp/sidekick/fork"><img alt="Fork and make it yours" src="https://img.shields.io/badge/Fork_and_make_it_yours-F4F1EA?style=for-the-badge&amp;logo=github&amp;logoColor=111111"></a>
+  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Install and Remix on Lemma" src="./docs/install-remix-on-lemma.svg" height="34"></a>
 </p>
 
 <p align="center">A personal assistant that remembers how you work, handles recurring tasks, and asks before it acts outside the pod.</p>
@@ -39,10 +38,10 @@ This repository contains the pod itself, not just a screenshot or a prompt. The 
 
 The files in this repo contain the structure and instructions. Your private records, connected accounts, credentials, and deployed URLs are added after import.
 
-## Run it on Lemma
+## Install and remix on Lemma
 
 <p>
-  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Run on Lemma" src="./docs/run-on-lemma.svg" height="44"></a>
+  <a href="https://lemma.work/import/github/deepak-jha-kgp/sidekick"><img alt="Install and Remix on Lemma" src="./docs/install-remix-on-lemma.svg" height="34"></a>
 </p>
 
 The button opens Lemma's import flow for this exact GitHub repository:
