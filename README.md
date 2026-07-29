@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/social-preview.svg" alt="Sidekick — Tasks, routines, memory, and controlled actions across your tools." width="100%"/>
+  <img src="./docs/social-preview.jpg" alt="Sidekick — knows the routine, remembers the context, asks before acting." width="100%"/>
 </p>
 
 <p align="center">
@@ -136,7 +136,7 @@ Not every pod needs every resource type. The bundle only includes the machinery 
 ## Go deeper
 
 - [Implementation notes](./docs/implementation-notes.md)
-- [Social card source](./docs/social-preview.svg)
+- [Social preview](./docs/social-preview.jpg)
 - [Build on Lemma](https://lemma.work)
 
 ## Share
