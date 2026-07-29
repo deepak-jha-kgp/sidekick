@@ -30,7 +30,7 @@ Every weekday morning, Sidekick checks the inbox items you care about and prepar
 
 This repository contains the pod itself, not just a screenshot or a prompt. The interface and the parts that do the work are installed together.
 
-- `app/` and `apps/home/` — The assistant home people use, with the packaged app Lemma installs.
+- `apps/home/` — The assistant home people use, including the editable source Lemma builds when the pod is installed.
 - `tables/` — The assistant's name, tasks, routines, memory, emails, skills, and proposed actions.
 - `agents/` — One agent handles the work; another turns completed work into compact, reusable memory.
 - `functions/` — Fetch inbox items, apply results, update memory, and execute an approved action.
