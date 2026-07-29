@@ -1,0 +1,32 @@
+{
+  // Proposed side-effects awaiting the user's OK — the approval queue AND the audit log.
+  // The assistant never touches the outside world directly; it proposes an action here.
+  // pending -> approved -> executed (or rejected/failed). RLS on.
+  "name": "actions",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "task_id", "type": "TEXT", "required": true, "max_length": 60,
+      "description": "Id of the tasks row that proposed this action." },
+    { "name": "kind", "type": "ENUM", "required": true, "default": "other",
+      "options": ["send_email", "create_event", "send_message", "other"] },
+    { "name": "title", "type": "TEXT", "required": true, "max_length": 160,
+      "description": "Human label for the approval card, e.g. 'Send reply to Jordan'." },
+    { "name": "summary", "type": "TEXT", "max_length": 280, "description": "One line on what this will do." },
+    { "name": "preview", "type": "TEXT",
+      "description": "The full content the user reviews before approving — email body, event details, etc." },
+    { "name": "payload", "type": "JSON",
+      "description": "Structured args for execute_action (to, subject, body, start, end, ...)." },
+    { "name": "connector", "type": "TEXT", "max_length": 40, "default": "",
+      "description": "Connector auth-config name, e.g. 'gmail', 'googlecalendar'. Empty = no external call." },
+    { "name": "operation", "type": "TEXT", "max_length": 80,
+      "description": "Connector operation, e.g. 'GMAIL_REPLY_TO_THREAD'." },
+    { "name": "status", "type": "ENUM", "required": true, "default": "pending",
+      "options": ["pending", "approved", "rejected", "executed", "failed"] },
+    { "name": "requires_approval", "type": "BOOLEAN", "default": true,
+      "description": "False when autonomy lets it auto-run without a tap." },
+    { "name": "result", "type": "JSON", "description": "Execution result / audit detail." },
+    { "name": "executed_at", "type": "DATETIME" }
+  ],
+  "config": {}
+}

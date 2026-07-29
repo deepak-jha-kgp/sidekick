@@ -1,0 +1,47 @@
+{
+  "name": "run-task",
+  "description": "Fires on every new tasks row: the assistant-agent handles the request in one pass; apply_result lands the result, creates approval-queue actions, and appends learned memory.",
+  "start": {
+    "type": "DATASTORE_EVENT",
+    "config": {
+      "table_name": "tasks",
+      "operations": ["INSERT"]
+    }
+  },
+  "nodes": [
+    {
+      "id": "handle",
+      "type": "AGENT",
+      "label": "Assistant handles the task",
+      "config": {
+        "agent_name": "assistant-agent",
+        "input_mapping": {
+          "task_id": { "type": "expression", "value": "start.metadata.record_id" }
+        }
+      }
+    },
+    {
+      "id": "land",
+      "type": "FUNCTION",
+      "label": "Land result + queue approvals + learn",
+      "config": {
+        "function_name": "apply_result",
+        "input_mapping": {
+          "task_id": { "type": "expression", "value": "start.metadata.record_id" },
+          "summary": { "type": "expression", "value": "handle.summary" },
+          "result": { "type": "expression", "value": "handle.result" },
+          "kind": { "type": "expression", "value": "handle.kind" },
+          "plan": { "type": "expression", "value": "handle.plan", "optional": true },
+          "actions": { "type": "expression", "value": "handle.actions" },
+          "new_memory": { "type": "expression", "value": "handle.new_memory" },
+          "reasoning": { "type": "expression", "value": "handle.reasoning", "optional": true }
+        }
+      }
+    },
+    { "id": "end", "type": "END", "label": "Done" }
+  ],
+  "edges": [
+    { "id": "e1", "source": "handle", "target": "land" },
+    { "id": "e2", "source": "land", "target": "end" }
+  ]
+}

@@ -1,0 +1,24 @@
+# Secrets and environment bindings
+.env
+.env.local
+.env.*.local
+.lemma.env
+.lemma.*.env
+*.pem
+*.key
+
+# Dependencies and local builds
+node_modules/
+dist/
+app/dist/
+*.tsbuildinfo
+__pycache__/
+*.py[cod]
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+
+# Local Lemma state
+.lemma/

@@ -1,0 +1,55 @@
+{
+  "name": "assistant-agent",
+  "description": "The user's personal assistant. Handles one task in a single pass: reads the request, the user's learned memory, persona, and /knowledge, then produces a result and proposes any outside-world actions for approval. Never sends or changes anything itself.",
+  "instruction": { "$file": "instruction.md" },
+  "toolsets": ["POD", "WEB_SEARCH"],
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "task_id": { "type": "string", "description": "Id of the tasks row to handle." }
+    },
+    "required": ["task_id"]
+  },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "One-line outcome for the task card, <=200 chars." },
+      "result": { "type": "string", "description": "What you produced or did — markdown. This is the body the user reads in the task detail. For a brief, the brief itself; for a reply, a short note plus the drafted reply lives in an action." },
+      "kind": { "type": "string", "enum": ["brief", "reply", "research", "schedule", "general"],
+        "description": "The nature of the work, for card styling." },
+      "plan": { "type": "array", "description": "The steps you took, in order — 'show your work'.",
+        "items": { "type": "object", "properties": {
+          "step": { "type": "string" }, "detail": { "type": "string" } }, "required": ["step"] } },
+      "actions": { "type": "array", "description": "Outside-world actions you propose. [] if the task is answered with just the result. Each becomes a tap-to-approve card. NEVER perform these — only propose.",
+        "items": { "type": "object", "properties": {
+          "kind": { "type": "string", "enum": ["send_email", "create_event", "send_message", "other"] },
+          "title": { "type": "string", "description": "Human label, e.g. 'Send reply to Jordan at Acme'." },
+          "summary": { "type": "string", "description": "One line on what approving does." },
+          "preview": { "type": "string", "description": "The full content to review — the email body, the event details — exactly what will be sent/created." },
+          "connector": { "type": "string", "description": "'gmail', 'googlecalendar', or '' if none." },
+          "operation": { "type": "string", "description": "Connector operation name, e.g. 'GMAIL_REPLY_TO_THREAD', 'GOOGLECALENDAR_CREATE_EVENT'. '' if none." },
+          "payload": { "type": "object", "description": "Structured args for executing it: for email {to, subject, body, thread_id?}; for event {summary, start, end, attendees?, description?}." }
+        }, "required": ["kind", "title", "preview"] } },
+      "new_memory": { "type": "array", "description": "Facts about the user worth remembering for next time. [] if nothing new. Keep them atomic and durable — not one-off details.",
+        "items": { "type": "object", "properties": {
+          "kind": { "type": "string", "enum": ["voice", "contact", "preference", "fact"] },
+          "label": { "type": "string" }, "value": { "type": "string" },
+          "confidence": { "type": "string", "enum": ["low", "medium", "high"] }
+        }, "required": ["kind", "label", "value"] } },
+      "reasoning": { "type": "string", "description": "Brief why, for transparency." }
+    },
+    "required": ["summary", "result", "kind", "actions", "new_memory"]
+  },
+  "permissions": { "grants": [
+    { "resource_type": "datastore_table", "resource_name": "tasks",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] },
+    { "resource_type": "datastore_table", "resource_name": "memory",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] },
+    { "resource_type": "datastore_table", "resource_name": "assistant",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] },
+    { "resource_type": "datastore_table", "resource_name": "routines",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] },
+    { "resource_type": "folder", "resource_name": "/knowledge",
+      "permission_ids": ["folder.read"] }
+  ] }
+}

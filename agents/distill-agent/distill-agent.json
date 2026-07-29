@@ -1,0 +1,28 @@
+{
+  "name": "distill-agent",
+  "description": "Reads the user's real fetched emails and distills who they are: their writing voice (from sent mail), the people they work with (frequent senders/recipients), and facts about them (employer, role, current projects). Judgment only — a function persists the result.",
+  "instruction": { "$file": "instruction.md" },
+  "toolsets": ["POD"],
+  "input_schema": { "type": "object", "properties": {} },
+  "output_schema": {
+    "type": "object",
+    "properties": {
+      "voice": { "type": "string", "description": "How the user writes, distilled from their sent mail: greeting/sign-off style, formality, sentence length, tone. Specific enough to imitate." },
+      "about": { "type": "string", "description": "1-2 sentences on who the user is, grounded in the mail." },
+      "role": { "type": "string", "description": "Their role + employer if inferable, e.g. 'founder at Gappy AI'. '' if unclear." },
+      "contacts": { "type": "array", "description": "The real people they deal with most (colleagues, clients). Use real names + emails from the mail.",
+        "items": { "type": "object", "properties": {
+          "name": { "type": "string" }, "email": { "type": "string" },
+          "relationship": { "type": "string", "description": "e.g. 'colleague at Gappy AI', 'client', 'investor'." } }, "required": ["name"] } },
+      "facts": { "type": "array", "description": "Durable facts about the user from the mail — current projects, company, priorities.",
+        "items": { "type": "object", "properties": { "label": { "type": "string" }, "value": { "type": "string" } }, "required": ["label", "value"] } }
+    },
+    "required": ["voice", "about", "contacts", "facts"]
+  },
+  "permissions": { "grants": [
+    { "resource_type": "datastore_table", "resource_name": "emails",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] },
+    { "resource_type": "datastore_table", "resource_name": "assistant",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] }
+  ] }
+}

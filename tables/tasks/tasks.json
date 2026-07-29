@@ -1,0 +1,31 @@
+{
+  // The unit of work. A request the assistant handles — from the user (chat/voice/email)
+  // or auto-created by a routine. Moves queued -> working -> needs_approval|done|failed.
+  // RLS on. Insert of a row triggers the run-task workflow (reactive choreography).
+  "name": "tasks",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "title", "type": "TEXT", "required": true, "max_length": 160,
+      "description": "Short label for the task card, e.g. 'Reply to Jordan at Acme'." },
+    { "name": "request", "type": "TEXT", "required": true,
+      "description": "The ask in plain language (what the user said, or what the routine instructed)." },
+    { "name": "kind", "type": "ENUM", "required": true, "default": "general",
+      "options": ["brief", "reply", "research", "schedule", "general"],
+      "description": "Shapes the card styling and maps to routine types." },
+    { "name": "source", "type": "ENUM", "required": true, "default": "chat",
+      "options": ["chat", "voice", "email", "routine"] },
+    { "name": "routine_id", "type": "TEXT", "max_length": 60,
+      "description": "Id of the routines row that created this task, if any." },
+    { "name": "status", "type": "ENUM", "required": true, "default": "queued",
+      "options": ["queued", "working", "needs_approval", "done", "failed"] },
+    { "name": "summary", "type": "TEXT", "max_length": 280,
+      "description": "One-line summary of the outcome, for the card." },
+    { "name": "result", "type": "TEXT",
+      "description": "What the assistant produced / did — markdown shown in the task detail." },
+    { "name": "plan", "type": "JSON",
+      "description": "Ordered steps the assistant took ('show your work'), each {step, detail}." },
+    { "name": "reasoning", "type": "TEXT", "description": "Brief why, for transparency." }
+  ],
+  "config": {}
+}

@@ -1,0 +1,21 @@
+{
+  // Mirror of the user's real Gmail — fetched from the connected account. RLS on.
+  // Powers the Inbox view and feeds profile distillation (voice + contacts).
+  "name": "emails",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "gmail_message_id", "type": "TEXT", "required": true, "unique": true, "max_length": 120 },
+    { "name": "thread_id", "type": "TEXT", "max_length": 120 },
+    { "name": "from_email", "type": "TEXT", "max_length": 320 },
+    { "name": "from_name", "type": "TEXT", "max_length": 240 },
+    { "name": "to_email", "type": "TEXT", "max_length": 640 },
+    { "name": "subject", "type": "TEXT", "max_length": 900 },
+    { "name": "snippet", "type": "TEXT", "max_length": 1200 },
+    { "name": "body_text", "type": "TEXT" },
+    { "name": "received_at", "type": "DATETIME" },
+    { "name": "is_from_me", "type": "BOOLEAN", "default": false, "description": "True for the user's sent mail — used to distill their voice." },
+    { "name": "labels", "type": "JSON" }
+  ],
+  "config": {}
+}

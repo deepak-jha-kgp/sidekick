@@ -1,0 +1,10 @@
+{
+  "name": "task-on-insert",
+  "schedule_type": "DATASTORE",
+  "config": {
+    "table_name": "tasks",
+    "operations": ["INSERT"]
+  },
+  "workflow_name": "run-task",
+  "is_active": true
+}

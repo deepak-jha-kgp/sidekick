@@ -1,0 +1,14 @@
+{
+  "name": "fetch_inbox",
+  "description": "Fetches the user's real Gmail (inbox + sent) from the connected account into the emails table, deduped by message id. Sent mail is flagged is_from_me for voice distillation.",
+  "type": "API",
+  "code": { "$file": "code.py" },
+  "permissions": { "grants": [
+    { "resource_type": "datastore_table", "resource_name": "emails",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] },
+    { "resource_type": "datastore_table", "resource_name": "assistant",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] },
+    { "resource_type": "connector", "resource_name": "gmail",
+      "permission_ids": ["connector.use"] }
+  ] }
+}

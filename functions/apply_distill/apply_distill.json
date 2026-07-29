@@ -1,0 +1,12 @@
+{
+  "name": "apply_distill",
+  "description": "Persists the distill-agent's profile: writes voice/contacts/facts to memory (source='email', idempotent) and the user's role to the assistant row.",
+  "type": "API",
+  "code": { "$file": "code.py" },
+  "permissions": { "grants": [
+    { "resource_type": "datastore_table", "resource_name": "memory",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] },
+    { "resource_type": "datastore_table", "resource_name": "assistant",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] }
+  ] }
+}

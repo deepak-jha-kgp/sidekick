@@ -1,0 +1,4 @@
+{
+  "description": "The user's grounding documents — company facts, bios, links, metrics, templates. The assistant searches these to ground briefs and drafts.",
+  "visibility": "POD"
+}

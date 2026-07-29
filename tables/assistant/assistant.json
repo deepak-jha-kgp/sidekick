@@ -1,0 +1,27 @@
+{
+  // The user's personal assistant persona + settings. One row per user (RLS on).
+  // Set during onboarding ("name your assistant"); the name is the product's identity.
+  "name": "assistant",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "name", "type": "TEXT", "required": true, "max_length": 40,
+      "description": "The assistant's name, chosen by the user at onboarding (e.g. 'Ori')." },
+    { "name": "avatar_emoji", "type": "TEXT", "max_length": 8, "default": "🟣",
+      "description": "Emoji shown as the assistant's avatar in the app." },
+    { "name": "accent", "type": "TEXT", "max_length": 16, "default": "#7C5CFF",
+      "description": "Hex accent color for the assistant's identity in the UI." },
+    { "name": "user_name", "type": "TEXT", "max_length": 80,
+      "description": "What the assistant calls the user (first name)." },
+    { "name": "user_role", "type": "TEXT", "max_length": 160,
+      "description": "The user's role/context, e.g. 'founder at Acme'. Grounds the assistant." },
+    { "name": "autonomy", "type": "ENUM", "required": true, "default": "ask",
+      "options": ["ask", "trusted", "auto"],
+      "description": "Approval mode. ask = every outside action needs a tap; trusted = low-risk auto-runs; auto = most actions auto-run." },
+    { "name": "timezone", "type": "TEXT", "max_length": 60, "default": "America/Los_Angeles" },
+    { "name": "google_address", "type": "TEXT", "max_length": 320, "description": "Connected Google account email." },
+    { "name": "google_account_id", "type": "TEXT", "max_length": 120, "description": "Connector account id (pins connector calls)." },
+    { "name": "onboarded", "type": "BOOLEAN", "default": false }
+  ],
+  "config": {}
+}

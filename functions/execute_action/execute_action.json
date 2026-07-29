@@ -1,0 +1,18 @@
+{
+  "name": "execute_action",
+  "description": "Runs one approved action from the approval queue: optionally applies user edits, executes the side-effect (Gmail/Calendar) when live connectors are on — otherwise records the approval — then advances the parent task to done once nothing is left pending.",
+  "type": "API",
+  "code": { "$file": "code.py" },
+  "permissions": { "grants": [
+    { "resource_type": "datastore_table", "resource_name": "actions",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] },
+    { "resource_type": "datastore_table", "resource_name": "tasks",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] },
+    { "resource_type": "datastore_table", "resource_name": "assistant",
+      "permission_ids": ["datastore.table.read", "datastore.record.read"] },
+    { "resource_type": "connector", "resource_name": "gmail",
+      "permission_ids": ["connector.use"] },
+    { "resource_type": "connector", "resource_name": "google_calendar",
+      "permission_ids": ["connector.use"] }
+  ] }
+}

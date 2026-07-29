@@ -1,0 +1,6 @@
+{"name":"Email","description":"Triage the inbox, draft replies in your voice, and send on your OK.","icon":"✉️","color":"#FF7A45","enabled":true,"sort":1}
+{"name":"Calendar","description":"Find slots, propose meetings, and book them once you approve.","icon":"🗓️","color":"#5B8DEF","enabled":true,"sort":2}
+{"name":"Research","description":"Live-web dossiers on people and companies, with sources.","icon":"🔎","color":"#22C55E","enabled":true,"sort":3}
+{"name":"Briefings","description":"Morning and weekly briefs, tuned to what matters to you.","icon":"📋","color":"#A855F7","enabled":true,"sort":4}
+{"name":"Documents","description":"Summarize, draft, and format long documents fast.","icon":"📄","color":"#EAB308","enabled":true,"sort":5}
+{"name":"Follow-ups","description":"Catch what needs a reply and chase it down for you.","icon":"✅","color":"#EC4899","enabled":true,"sort":6}

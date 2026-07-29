@@ -1,0 +1,22 @@
+{
+  // What the assistant has learned about the user — voice, contacts, preferences, facts.
+  // One atomic fact per row (RLS on). Seeded at onboarding, then appended as the
+  // assistant works ("it learns how you work"). The agent reads active rows to personalize.
+  "name": "memory",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "kind", "type": "ENUM", "required": true, "default": "fact",
+      "options": ["voice", "contact", "preference", "fact"],
+      "description": "voice = how they write; contact = a person they know; preference = how they like things done; fact = anything else." },
+    { "name": "label", "type": "TEXT", "required": true, "max_length": 120,
+      "description": "Short key, e.g. 'sign-off', 'CTO — Priya Rao', 'focus time'." },
+    { "name": "value", "type": "TEXT", "required": true,
+      "description": "The fact itself, in plain language." },
+    { "name": "source", "type": "TEXT", "max_length": 120, "default": "onboarding",
+      "description": "Where it was learned: 'onboarding', 'observed', or a task title." },
+    { "name": "confidence", "type": "ENUM", "default": "medium", "options": ["low", "medium", "high"] },
+    { "name": "active", "type": "BOOLEAN", "default": true }
+  ],
+  "config": {}
+}

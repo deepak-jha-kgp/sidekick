@@ -1,0 +1,10 @@
+{
+  "name": "distill-on-insert",
+  "schedule_type": "DATASTORE",
+  "config": {
+    "table_name": "profile_runs",
+    "operations": ["INSERT"]
+  },
+  "workflow_name": "build-profile",
+  "is_active": true
+}

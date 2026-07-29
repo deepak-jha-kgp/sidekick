@@ -1,0 +1,33 @@
+{
+  "name": "build-profile",
+  "description": "Distills the user's profile (voice, contacts, facts) from their fetched emails and writes it to memory. Fires when a profile_runs row is inserted (onboarding requests it after fetch_inbox).",
+  "start": { "type": "DATASTORE_EVENT", "config": { "table_name": "profile_runs", "operations": ["INSERT"] } },
+  "nodes": [
+    {
+      "id": "distill",
+      "type": "AGENT",
+      "label": "Distill from real email",
+      "config": { "agent_name": "distill-agent", "input_mapping": {} }
+    },
+    {
+      "id": "apply",
+      "type": "FUNCTION",
+      "label": "Write profile to memory",
+      "config": {
+        "function_name": "apply_distill",
+        "input_mapping": {
+          "voice": { "type": "expression", "value": "distill.voice" },
+          "about": { "type": "expression", "value": "distill.about" },
+          "role": { "type": "expression", "value": "distill.role", "optional": true },
+          "contacts": { "type": "expression", "value": "distill.contacts" },
+          "facts": { "type": "expression", "value": "distill.facts" }
+        }
+      }
+    },
+    { "id": "end", "type": "END", "label": "Done" }
+  ],
+  "edges": [
+    { "id": "e1", "source": "distill", "target": "apply" },
+    { "id": "e2", "source": "apply", "target": "end" }
+  ]
+}

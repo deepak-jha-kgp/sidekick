@@ -1,0 +1,18 @@
+{
+  // What the assistant can do — an editable capability list shown on the Skills page.
+  // Descriptive product content the user can add/edit/toggle (RLS on). The agent's real
+  // powers are its toolsets; these cards let the user shape and see the surface.
+  "name": "skills",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "name", "type": "TEXT", "required": true, "max_length": 80 },
+    { "name": "description", "type": "TEXT", "max_length": 400 },
+    { "name": "icon", "type": "TEXT", "max_length": 8, "default": "✨" },
+    { "name": "color", "type": "TEXT", "max_length": 16, "default": "#FF7A45",
+      "description": "Accent color for the skill tile." },
+    { "name": "enabled", "type": "BOOLEAN", "default": true },
+    { "name": "sort", "type": "INTEGER", "default": 0, "description": "Display order." }
+  ],
+  "config": {}
+}

@@ -1,0 +1,16 @@
+{
+  "name": "apply_result",
+  "description": "Lands the assistant-agent's output: updates the task (status/summary/result/plan), creates approval-queue action rows for proposed side-effects, and appends learned memory rows. Deterministic — no judgment.",
+  "type": "API",
+  "code": { "$file": "code.py" },
+  "permissions": { "grants": [
+    { "resource_type": "datastore_table", "resource_name": "tasks",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] },
+    { "resource_type": "datastore_table", "resource_name": "actions",
+      "permission_ids": ["datastore.table.read", "datastore.record.write"] },
+    { "resource_type": "datastore_table", "resource_name": "memory",
+      "permission_ids": ["datastore.table.read", "datastore.record.write"] },
+    { "resource_type": "datastore_table", "resource_name": "routines",
+      "permission_ids": ["datastore.table.read", "datastore.record.read", "datastore.record.write"] }
+  ] }
+}

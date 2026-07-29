@@ -1,0 +1,5 @@
+{"kind":"voice","label":"writing voice","value":"Warm but brief. Opens with the person's first name — never 'Hi' or 'Dear'. Short sentences. Optimistic and direct, never fawning. Signs off '— Alex'.","confidence":"high","source":"onboarding","active":true}
+{"kind":"contact","label":"Jordan Lee — Partner, Acme Ventures","value":"Lead prospective investor for the Series B. Met at SaaStr. Sharp on metrics; asked for Q2 numbers before taking it to a partner meeting.","confidence":"high","source":"onboarding","active":true}
+{"kind":"contact","label":"Priya Rao — CTO, Northwind","value":"Alex's co-founder and CTO. Owns product and engineering. Usually free Thursday afternoons.","confidence":"high","source":"onboarding","active":true}
+{"kind":"preference","label":"morning brief shape","value":"Lead with anything needing a decision today, then today's calendar, then FYIs. No fluff, no restating the obvious.","confidence":"high","source":"onboarding","active":true}
+{"kind":"fact","label":"focus time","value":"Protects 9-11am daily for deep work — don't book meetings in that window.","confidence":"high","source":"onboarding","active":true}

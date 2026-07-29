@@ -1,0 +1,30 @@
+{
+  // Standing automations the assistant runs on repeat, without being asked each time.
+  // A routine fires (schedule/email/manual) and inserts a tasks row. RLS on.
+  // Users edit these in the app — this is what makes it a product, not a demo.
+  "name": "routines",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "name", "type": "TEXT", "required": true, "max_length": 80,
+      "description": "e.g. 'Morning brief', 'Research new contacts'." },
+    { "name": "description", "type": "TEXT", "max_length": 280,
+      "description": "One line on what it does, shown on the routine card." },
+    { "name": "instruction", "type": "TEXT", "required": true,
+      "description": "The request handed to the assistant when this routine fires." },
+    { "name": "kind", "type": "ENUM", "required": true, "default": "general",
+      "options": ["brief", "reply", "research", "schedule", "general"],
+      "description": "Task kind produced when it fires." },
+    { "name": "trigger_type", "type": "ENUM", "required": true, "default": "schedule",
+      "options": ["schedule", "email", "manual"] },
+    { "name": "schedule_cron", "type": "TEXT", "max_length": 60,
+      "description": "Cron expression when trigger_type = schedule." },
+    { "name": "schedule_label", "type": "TEXT", "max_length": 80,
+      "description": "Human-readable cadence for the UI, e.g. 'Every day at 7:00am'." },
+    { "name": "icon", "type": "TEXT", "max_length": 8, "default": "✨",
+      "description": "Emoji shown on the routine card." },
+    { "name": "enabled", "type": "BOOLEAN", "default": true },
+    { "name": "last_run_at", "type": "DATETIME", "description": "When it last fired." }
+  ],
+  "config": {}
+}

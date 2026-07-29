@@ -1,0 +1,13 @@
+{
+  // Trigger table: inserting a row kicks off the build-profile workflow (distill from
+  // email) via a DATASTORE schedule. Lets the app start distillation (it can insert a
+  // row, but can't start a MANUAL workflow from the browser). RLS on.
+  "name": "profile_runs",
+  "primary_key_column": "id",
+  "enable_rls": true,
+  "columns": [
+    { "name": "status", "type": "ENUM", "default": "requested", "options": ["requested", "done"] },
+    { "name": "note", "type": "TEXT", "max_length": 200 }
+  ],
+  "config": {}
+}
