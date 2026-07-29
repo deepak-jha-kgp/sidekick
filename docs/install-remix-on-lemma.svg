@@ -1,8 +1,9 @@
-<svg width="222" height="34" viewBox="0 0 222 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="222" height="38" viewBox="0 0 222 38" fill="none" xmlns="http://www.w3.org/2000/svg">
   <title>Install and Remix on Lemma</title>
-  <desc>Lemma orange button with a white Lemma three-bar mark and white text.</desc>
-  <rect x="0.5" y="0.5" width="221" height="33" rx="8.5" fill="#D99A32"/>
-  <rect x="0.5" y="0.5" width="221" height="33" rx="8.5" stroke="#BC7D18"/>
+  <desc>Vivid orange Lemma button with a cobalt offset shadow, white Lemma mark, and white text.</desc>
+  <rect x="5" y="5" width="217" height="33" rx="8" fill="#2457FF"/>
+  <rect x="0.5" y="0.5" width="216" height="33" rx="7.5" fill="#FF5A1F"/>
+  <rect x="0.5" y="0.5" width="216" height="33" rx="7.5" stroke="#FF8A52"/>
   <rect x="12" y="19" width="3.5" height="7" rx="1.5" fill="#FFFFFF"/>
   <rect x="18" y="14" width="3.5" height="12" rx="1.5" fill="#FFFFFF"/>
   <rect x="24" y="9" width="3.5" height="17" rx="1.5" fill="#FFFFFF"/>
