@@ -1,0 +1,38 @@
+name: Show your version
+description: Share a useful version of Sidekick that you changed for your own work.
+title: "[Remix] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Show what you made without turning this into a launch post. One screenshot and a few honest sentences are enough.
+  - type: input
+    id: repository
+    attributes:
+      label: Your repository
+      description: Link to the GitHub repository that contains your version.
+      placeholder: https://github.com/you/your-repo
+    validations:
+      required: true
+  - type: input
+    id: import_url
+    attributes:
+      label: Run on Lemma link
+      description: The Lemma import URL for your repository.
+      placeholder: https://lemma.work/import/github/you/your-repo
+    validations:
+      required: true
+  - type: textarea
+    id: changed
+    attributes:
+      label: What did you change?
+      description: Tell us who uses it and what you changed from the original.
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: Show it working
+      description: Drop in one screenshot, short recording, or concrete result.
+    validations:
+      required: true
